@@ -8,26 +8,19 @@
     html, body {
       margin: 0;
       padding: 0;
-      background-color: #000;
       height: 100%;
       width: 100%;
-      overflow: hidden;
-      cursor: none;
-    }
-
-    .center-wrapper {
+      background-color: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      width: 100vw;
+      cursor: url('crosshair.svg') 16 16, cross;
+      overflow: hidden;
     }
 
     .svg-container {
-      width: 30vw; /* 40% più piccolo di 50vw */
-      max-width: 360px;
-      transform: scale(0.6); /* scala ulteriore per precisione */
-      transform-origin: center;
+      width: 40vw; /* 40% più piccolo rispetto a 50vw */
+      max-width: 400px;
     }
 
     .svg-container object {
@@ -36,86 +29,22 @@
       display: block;
     }
 
-    .crosshair {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .crosshair::before,
-    .crosshair::after {
-      content: "";
-      position: absolute;
-      background-color: white;
-    }
-
-    .crosshair::before {
-      width: 2px;
-      height: 100%;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-    }
-
-    .crosshair::after {
-      height: 2px;
-      width: 100%;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-    }
-
     @media (max-width: 768px) {
       .svg-container {
         width: 60vw;
-        max-width: none;
       }
+    }
 
-      .crosshair {
-        width: 16px;
-        height: 16px;
-      }
-
-      .crosshair::before {
-        height: 100%;
-      }
-
-      .crosshair::after {
-        width: 100%;
+    @media (max-width: 480px) {
+      .svg-container {
+        width: 80vw;
       }
     }
   </style>
 </head>
 <body>
-  <div class="center-wrapper">
-    <div class="svg-container">
-      <object type="image/svg+xml" data="38740.svg"></object>
-    </div>
+  <div class="svg-container">
+    <object type="image/svg+xml" data="38740.svg"></object>
   </div>
-
-  <div class="crosshair" id="crosshair"></div>
-
-  <script>
-    const crosshair = document.getElementById("crosshair");
-    let mouseX = 0, mouseY = 0;
-    let currentX = 0, currentY = 0;
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    function animate() {
-      // interpolazione per movimento fluido (lerp)
-      currentX += (mouseX - currentX) * 0.2;
-      currentY += (mouseY - currentY) * 0.2;
-      crosshair.style.transform = `translate(${currentX - crosshair.offsetWidth / 2}px, ${currentY - crosshair.offsetHeight / 2}px)`;
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
 </body>
 </html>

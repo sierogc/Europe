@@ -14,12 +14,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: url('crosshair.png') 2 2, cross;
       overflow: hidden;
     }
 
     .svg-container {
-      width: 38vw; /* 40% più piccolo rispetto a 50vw */
+      position: relative;
+      width: 38vw;
       max-width: 400px;
     }
 
@@ -27,6 +27,16 @@
       width: 100%;
       height: auto;
       display: block;
+    }
+
+    .crosshair {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 32px;
+      height: 32px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
     }
 
     @media (max-width: 768px) {
@@ -45,6 +55,7 @@
 <body>
   <div class="svg-container">
     <object type="image/svg+xml" data="38740.svg"></object>
+    <img class="crosshair" src="crosshair.svg" alt="crosshair" />
   </div>
 </body>
-</html> 
+</html>

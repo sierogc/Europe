@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Europe</title>
+  <title>europe</title>
   <style>
     html, body {
       margin: 0;
@@ -24,8 +24,10 @@
     }
 
     .svg-container {
-      width: 50vw;
-      max-width: 600px;
+      width: 30vw; /* 40% più piccolo di 50vw */
+      max-width: 360px;
+      transform: scale(0.6); /* scala ulteriore per precisione */
+      transform-origin: center;
     }
 
     .svg-container object {
@@ -35,7 +37,7 @@
     }
 
     .crosshair {
-      position: absolute;
+      position: fixed;
       width: 20px;
       height: 20px;
       pointer-events: none;
@@ -51,7 +53,7 @@
 
     .crosshair::before {
       width: 2px;
-      height: 20px;
+      height: 100%;
       left: 50%;
       top: 0;
       transform: translateX(-50%);
@@ -59,7 +61,7 @@
 
     .crosshair::after {
       height: 2px;
-      width: 20px;
+      width: 100%;
       top: 50%;
       left: 0;
       transform: translateY(-50%);
@@ -67,7 +69,8 @@
 
     @media (max-width: 768px) {
       .svg-container {
-        width: 80vw;
+        width: 60vw;
+        max-width: none;
       }
 
       .crosshair {
@@ -76,11 +79,11 @@
       }
 
       .crosshair::before {
-        height: 16px;
+        height: 100%;
       }
 
       .crosshair::after {
-        width: 16px;
+        width: 100%;
       }
     }
   </style>
@@ -96,13 +99,23 @@
 
   <script>
     const crosshair = document.getElementById("crosshair");
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
 
     document.addEventListener("mousemove", (e) => {
-      const offsetX = crosshair.offsetWidth / 2;
-      const offsetY = crosshair.offsetHeight / 2;
-      crosshair.style.left = `${e.clientX - offsetX}px`;
-      crosshair.style.top = `${e.clientY - offsetY}px`;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
+
+    function animate() {
+      // interpolazione per movimento fluido (lerp)
+      currentX += (mouseX - currentX) * 0.2;
+      currentY += (mouseY - currentY) * 0.2;
+      crosshair.style.transform = `translate(${currentX - crosshair.offsetWidth / 2}px, ${currentY - crosshair.offsetHeight / 2}px)`;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>

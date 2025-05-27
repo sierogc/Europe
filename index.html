@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mirino</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  #container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #111;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  #crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    pointer-events: none;
+  }
+  #crosshair line {
+    stroke: red;
+    stroke-width: 2;
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <!-- Inserisci qui il tuo SVG -->
+  <svg id="map" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Esempio di stelle -->
+    <circle class="star" cx="200" cy="150" r="10" fill="yellow" />
+    <circle class="star" cx="400" cy="300" r="10" fill="yellow" />
+    <circle class="star" cx="600" cy="450" r="10" fill="yellow" />
+  </svg>
+
+  <!-- Mirino -->
+  <svg id="crosshair" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <line x1="20" y1="0" x2="20" y2="40" />
+    <line x1="0" y1="20" x2="40" y2="20" />
+  </svg>
+</div>
+
+<script>
+  const svg = document.getElementById('map');
+
+  // Quando clicchi sul contenitore, verifica se sotto al mirino c'è una stella e rimuovila
+  document.getElementById('container').addEventListener('click', (event) => {
+    // Calcola posizione centro del mirino in coordinate SVG
+    const rect = svg.getBoundingClientRect();
+    const svgPoint = svg.createSVGPoint();
+    svgPoint.x = rect.width / 2;
+    svgPoint.y = rect.height / 2;
+    const cursorPoint = svgPoint.matrixTransform(svg.getScreenCTM().inverse());
+
+    // Cerca una stella (elemento con classe star) che contenga il punto
+    const stars = Array.from(svg.querySelectorAll('.star'));
+    for (const star of stars) {
+      const cx = parseFloat(star.getAttribute('cx'));
+      const cy = parseFloat(star.getAttribute('cy'));
+      const r = parseFloat(star.getAttribute('r'));
+      const dx = cursorPoint.x - cx;
+      const dy = cursorPoint.y - cy;
+      if (dx * dx + dy * dy <= r * r) {
+        star.remove();
+        break;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

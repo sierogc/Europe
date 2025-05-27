@@ -5,17 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Europe</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       background-color: #000;
+      height: 100%;
+      width: 100%;
       overflow: hidden;
       cursor: none;
     }
 
+    .center-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
     .svg-container {
-      width: 70vw;
+      width: 50vw;
       max-width: 600px;
-      margin: auto;
     }
 
     .svg-container object {
@@ -25,13 +35,11 @@
     }
 
     .crosshair {
-      position: fixed;
-      top: 0;
-      left: 0;
+      position: absolute;
       width: 20px;
       height: 20px;
       pointer-events: none;
-      z-index: 1000;
+      z-index: 9999;
     }
 
     .crosshair::before,
@@ -78,16 +86,22 @@
   </style>
 </head>
 <body>
-  <div class="svg-container">
-    <object type="image/svg+xml" data="38740.svg"></object>
+  <div class="center-wrapper">
+    <div class="svg-container">
+      <object type="image/svg+xml" data="38740.svg"></object>
+    </div>
   </div>
-  <div class="crosshair"></div>
+
+  <div class="crosshair" id="crosshair"></div>
 
   <script>
-    const crosshair = document.querySelector(".crosshair");
+    const crosshair = document.getElementById("crosshair");
 
     document.addEventListener("mousemove", (e) => {
-      crosshair.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+      const offsetX = crosshair.offsetWidth / 2;
+      const offsetY = crosshair.offsetHeight / 2;
+      crosshair.style.left = `${e.clientX - offsetX}px`;
+      crosshair.style.top = `${e.clientY - offsetY}px`;
     });
   </script>
 </body>

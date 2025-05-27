@@ -1,56 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rotating Circular Text SVG</title>
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>europe</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: url('https://github.com/sierogc/europe/blob/main/crosshair.svg') 16 16, cross;
+      overflow: hidden;
+    }
 
-  svg {
-    width: 80vmin;
-    height: 80vmin;
-    animation: rotate 30s linear infinite;
-  }
+    .svg-container {
+      width: 35vw; /* 40% più piccolo rispetto a 50vw */
+      max-width: 400px;
+    }
 
-  text {
-    fill: white;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 2.5vmin;
-  }
+    .svg-container object {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-</style>
+    @media (max-width: 768px) {
+      .svg-container {
+        width: 60vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .svg-container {
+        width: 80vw;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<svg viewBox="0 0 300 300" aria-label="Rotating circular text" role="img" >
-  <defs>
-    <path id="circlePath" d="
-      M 150, 150
-      m -130, 0
-      a 130,130 0 1,1 260,0
-      a 130,130 0 1,1 -260,0
-    " />
-  </defs>
-
-  <text>
-    <textPath xlink:href="#circlePath" startOffset="0%">
-      THERE'S A HOLE IN MY HEART THAT CAN ONLY BE FILLED BY YOU, AND THIS HOLE IN MY HEART CAN'T BE FILLED BY THE THINGS I DO.
-    </textPath>
-  </text>
-</svg>
-
+  <div class="svg-container">
+    <object type="image/svg+xml" data="38740.svg"></object>
+  </div>
 </body>
-</html>
+</html> 

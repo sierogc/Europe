@@ -15,8 +15,8 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      /* Inline cursor SVG in base64 per compatibilità browser */
-      cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMic+PGNpcmNsZSBjeD0nMTYnIGN5PScxNicgcj0nOCcgc3Ryb2tlPSd3aGl0ZScgc3Ryb2tlLXdpZHRoPScyJyBmaWxsPSduZXonLz48bGluZSB4MT0nMTYnIHkxPScwJyB4Mj0nMTYnIHkyPSc2JyBzdHJva2U9J3doaXRlJyBzdHJva2Utd2lkdGg9JzInLz48bGluZSB4MT0nMTYnIHkxPScyNicgeDI9JzE2JyB5Mj0nMzInIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nMicvPjxsaW5lIHgxPScwJyB5MT0nMTYnIHgyPSc2JyB5Mj0nMTYnIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nMicvPjxsaW5lIHgxPScyNicgeTE9JzE2JyB4Mj0nMzInIHkyPScxNicgc3Ryb2tlPSd3aGl0ZScgc3Ryb2tlLXdpZHRoPScyJy8+PC9zdmc+") 16 16, auto;
+      /* Utilizzo del cursore nativo "crosshair" per compatibilità garantita */
+      cursor: crosshair;
     }
 
     .svg-container {
@@ -30,6 +30,7 @@
       width: 100%;
       height: auto;
       display: block;
+      /* Permette al cursore ereditato di mostrarsi sopra l'SVG */
       pointer-events: none;
     }
 

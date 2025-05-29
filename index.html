@@ -15,28 +15,22 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      /* Imposta l'immagine SVG come cursore personalizzato, con hotspot al centro */
+      cursor: url('crosshair.svg') 16 16, auto;
     }
 
     .svg-container {
       position: relative;
       width: 45vw;
       max-width: 400px;
+      /* Opzionale: sottolinea che l'elemento è puntabile */
+      cursor: inherit;
     }
 
     .svg-container object {
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    .crosshair {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 32px;
-      height: 32px;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
     }
 
     @media (max-width: 768px) {
@@ -54,8 +48,8 @@
 </head>
 <body>
   <div class="svg-container">
+    <!-- Oggetto SVG principale -->
     <object type="image/svg+xml" data="38740.svg"></object>
-    <img class="crosshair" src="crosshair.svg" alt="crosshair" />
   </div>
 </body>
 </html>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>europe</title>
   <style>
+    /* Reset di base e sfondo nero */
     html, body {
       margin: 0;
       padding: 0;
@@ -15,24 +16,27 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      /* Imposta l'immagine SVG come cursore personalizzato, con hotspot al centro */
+      /* Cursore personalizzato SVG con hotspot al centro (supponendo 32x32) */
       cursor: url('crosshair.svg') 16 16, auto;
     }
 
+    /* Contenitore SVG */
     .svg-container {
       position: relative;
       width: 45vw;
       max-width: 400px;
-      /* Opzionale: sottolinea che l'elemento è puntabile */
+      /* Assicura che ereditino il cursore dal body */
       cursor: inherit;
     }
 
+    /* SVG interno */
     .svg-container object {
       width: 100%;
       height: auto;
       display: block;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .svg-container {
         width: 60vw;
@@ -48,7 +52,6 @@
 </head>
 <body>
   <div class="svg-container">
-    <!-- Oggetto SVG principale -->
     <object type="image/svg+xml" data="38740.svg"></object>
   </div>
 </body>

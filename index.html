@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>europe</title>
   <style>
-    /* Reset di base e sfondo nero */
     html, body {
       margin: 0;
       padding: 0;
@@ -16,11 +15,10 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      /* Cursore personalizzato: file SVG nella stessa cartella */
-      cursor: url("crosshair.svg") 16 16, url("crosshair.png") 16 16, auto;
+      /* Inline cursor SVG in base64 per compatibilità browser */
+      cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMic+PGNpcmNsZSBjeD0nMTYnIGN5PScxNicgcj0nOCcgc3Ryb2tlPSd3aGl0ZScgc3Ryb2tlLXdpZHRoPScyJyBmaWxsPSduZXonLz48bGluZSB4MT0nMTYnIHkxPScwJyB4Mj0nMTYnIHkyPSc2JyBzdHJva2U9J3doaXRlJyBzdHJva2Utd2lkdGg9JzInLz48bGluZSB4MT0nMTYnIHkxPScyNicgeDI9JzE2JyB5Mj0nMzInIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nMicvPjxsaW5lIHgxPScwJyB5MT0nMTYnIHgyPSc2JyB5Mj0nMTYnIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nMicvPjxsaW5lIHgxPScyNicgeTE9JzE2JyB4Mj0nMzInIHkyPScxNicgc3Ryb2tlPSd3aGl0ZScgc3Ryb2tlLXdpZHRoPScyJy8+PC9zdmc+") 16 16, auto;
     }
 
-    /* Contenitore SVG */
     .svg-container {
       position: relative;
       width: 45vw;
@@ -28,7 +26,6 @@
       cursor: inherit;
     }
 
-    /* SVG interno: trasparente agli eventi mouse per ereditare il cursore */
     .svg-container object {
       width: 100%;
       height: auto;
@@ -36,7 +33,6 @@
       pointer-events: none;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .svg-container { width: 60vw; }
     }
